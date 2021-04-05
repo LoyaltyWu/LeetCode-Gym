@@ -1,8 +1,6 @@
 
 // 第二遍看完默写done
 #include <algorithm>
-#include <cstdio>
-#include <cstring>
 #include <iostream>
 #include <vector>
 using namespace std;
