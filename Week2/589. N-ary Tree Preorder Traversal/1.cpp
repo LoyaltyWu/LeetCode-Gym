@@ -21,39 +21,39 @@
 using namespace std;
 // Definition for a Node.
 class Node {
-public:
-  int val;
-  vector<Node *> children;
+  public:
+    int val;
+    vector<Node *> children;
 
-  Node() {}
+    Node() {}
 
-  Node(int _val) { val = _val; }
+    Node(int _val) { val = _val; }
 
-  Node(int _val, vector<Node *> _children) {
-    val = _val;
-    children = _children;
-  }
+    Node(int _val, vector<Node *> _children) {
+        val = _val;
+        children = _children;
+    }
 };
 class Solution {
-public:
-  vector<int> preorder(Node *root) {
-    if (root == nullptr) {
-      return vector<int>();
+  public:
+    vector<int> preorder(Node *root) {
+        if (root == nullptr) {
+            return vector<int>();
+        }
+        int cur = root->val;
+        vector<int> result = vector<int>(1, cur);
+        vector<Node *> children = root->children;
+        for (int i = 0; i < children.size(); i++) {
+            vector<int> childResult = preorder(children[i]);
+            result.insert(result.end(), childResult.begin(), childResult.end());
+        }
+        return result;
     }
-    int cur = root->val;
-    vector<int> result = vector<int>(1, cur);
-    vector<Node *> children = root->children;
-    for (int i = 0; i < children.size(); i++) {
-      vector<int> childResult = preorder(children[i]);
-      result.insert(result.end(), childResult.begin(), childResult.end());
-    }
-    return result;
-  }
 };
 
 int main() {
-  Solution *s = new Solution();
-  s->preorder(nullptr);
-  delete s;
-  return 0;
+    Solution *s = new Solution();
+    s->preorder(nullptr);
+    delete s;
+    return 0;
 }
